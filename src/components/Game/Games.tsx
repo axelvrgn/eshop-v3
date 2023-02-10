@@ -13,7 +13,7 @@ const Games = ({ gamesList }: Props) => {
       <div className="text-right">
         Résultats sur cette page : {gamesList?.length}
       </div>
-      <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-8">
+      <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 gap-8">
         {gamesList?.slice(0, rangeValue).map((game, index) => (
           <Card key={index} game={game} />
         ))}
