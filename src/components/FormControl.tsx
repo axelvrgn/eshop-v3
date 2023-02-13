@@ -19,7 +19,7 @@ const FormControl = ({
     <div>
       <input
         //className="p-2 rounded border focus:outline-none focus:border-yellow-400 border-2 w-full valid:border-green-400 invalid:border-red-600"
-        className="p-2 rounded border focus:outline-none  focus:border-yellow-400  border-2 w-full"
+        className="p-2 rounded focus:outline-none  focus:border-yellow-400  border-2 w-full"
         type={type}
         value={value}
         placeholder={placeholder}

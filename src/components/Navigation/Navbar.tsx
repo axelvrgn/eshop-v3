@@ -14,7 +14,7 @@ const listRoutes = Routes.map((route, index) => (
     to={route.path}
     className={({ isActive }) =>
       isActive
-        ? "border-b-4 border-yellow-400"
+        ? "border-b-4 border-yellow-500"
         : "border-b-4 border-transparent"
     }
     key={index}
@@ -57,10 +57,10 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-between ">
             <div className="flex space-x-8 flex-wrap">{listRoutes}</div>
+            <button onClick={logout}>Déconnexion</button>
           </div>
 
           <div className="px-4">{guestRoutes}</div>
-          <button onClick={logout}>Déconnexion</button>
         </div>
       </div>
     </div>
