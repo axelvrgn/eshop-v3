@@ -23,7 +23,6 @@ const VideoGames = () => {
   const [games, setGames] = useState([]);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(0);
-  const [search, setSearch] = useState("");
   const [platforms, setPlatforms] = useState("");
   const [genres, setGenres] = useState("");
   const [isLoading, setLoading] = useState<boolean>(true);
