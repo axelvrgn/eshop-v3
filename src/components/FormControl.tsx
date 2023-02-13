@@ -1,31 +1,37 @@
 import React from "react";
+import { UseFormRegister } from "react-hook-form";
 
 type Props = {
   type: string;
-  value: any;
+  name: string;
+  register: any;
+  validationSchema?: any;
+  errors?: any;
   placeholder?: string;
-  onChange?: any;
   required?: boolean;
 };
 
 const FormControl = ({
   type,
-  value,
+  name,
+  register,
+  validationSchema,
+  errors,
   placeholder,
-  onChange,
   required,
 }: Props) => {
   return (
     <div>
       <input
-        //className="p-2 rounded border focus:outline-none focus:border-yellow-400 border-2 w-full valid:border-green-400 invalid:border-red-600"
         className="p-2 rounded focus:outline-none  focus:border-yellow-400  border-2 w-full"
         type={type}
-        value={value}
         placeholder={placeholder}
-        onChange={onChange}
+        {...register(name, validationSchema)}
         required={required}
       />
+      {errors && errors[name]?.type === "minLength" && (
+        <span className="text-red-500 break-all">{errors[name]?.message}</span>
+      )}
     </div>
   );
 };

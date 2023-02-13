@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { useForm } from "react-hook-form";
 
 import Icon from "@mdi/react";
 import { mdiChevronRight, mdiChevronLeft, mdiMagnify } from "@mdi/js";
@@ -13,6 +14,10 @@ import Loader from "../components/Loader";
 
 import { gameService } from "../services/gameService";
 import AuthContext from "../contexts/Auth";
+
+interface IFormValues {
+  search: string;
+}
 
 const VideoGames = () => {
   const [games, setGames] = useState([]);
@@ -40,11 +45,11 @@ const VideoGames = () => {
       });
   }, [page, pageSize, genres, platforms]);
 
-  const searchGames = () => {
-    console.log("search field : " + search);
+  const searchGames = (data: any) => {
+    console.log("search field : " + data.search);
     setLoading(true);
     gameService
-      .getBySearch(search)
+      .getBySearch(data.search)
       .then((res: any) => {
         setGames(res.data.results);
         setLoading(false);
@@ -84,6 +89,8 @@ const VideoGames = () => {
     } else setPlatforms(platform);
   };
 
+  const { register, handleSubmit } = useForm<IFormValues>();
+
   return (
     <div>
       <Layout>
@@ -96,21 +103,21 @@ const VideoGames = () => {
               />
             </div>
             <div className="w-full md:w-8/12">
-              <form className="flex flex-wrap space-x-2">
+              <form
+                className="flex flex-wrap space-x-2"
+                onSubmit={handleSubmit(searchGames)}
+              >
                 <FormField>
                   <FormControl
                     type="text"
-                    value={search}
+                    name="search"
                     placeholder="Rechercher par un nom, mot-clé..."
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      setSearch(e.target.value);
-                    }}
+                    register={register}
                   />
-                </FormField>
+                </FormField>{" "}
                 <button
-                  type="button"
+                  type="submit"
                   className="bg-yellow-400 p-2 rounded capitalize text-white"
-                  onClick={searchGames}
                 >
                   <Icon path={mdiMagnify} size={1} />
                 </button>

@@ -42,7 +42,6 @@ const Navbar = () => {
     console.log(error);
     setAuth({});
     pushToast({
-      title: "Bravo",
       content: "Vous êtes déconnecté !",
     });
   };

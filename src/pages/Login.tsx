@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 import { useToasts } from "../components/Toast/ToastContext";
 import AuthContext from "../contexts/Auth";
@@ -14,38 +15,46 @@ import Logo from "../components/Logo";
 import Alert from "../components/Alert";
 import Loader from "../components/Loader";
 
+interface IFormValues {
+  email: string;
+  password: string;
+}
+
 const Login = () => {
   const { setAuth } = useContext(AuthContext);
   const [isLoading, setLoading] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
   const { pushToast } = useToasts();
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<IFormValues>();
 
+  const handleLogin = async (formValues: any) => {
     try {
       setLoading(true);
       const { data, error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
+        email: formValues.email,
+        password: formValues.password,
       });
       if (error) throw error;
       pushToast({
-        title: "Bravo",
         content: "Vous êtes connecté !",
       });
-      const user = data.user;
       const accessToken = data.session!.access_token;
       sessionStorage.setItem("tk_u", accessToken);
-      setAuth([user, accessToken]);
+      setAuth([data.user, accessToken]);
       console.log(data);
+      navigate("/games");
     } catch (error: any) {
       alert(error.error_description || error.message);
     } finally {
+      reset();
       setLoading(false);
     }
   };
@@ -55,7 +64,10 @@ const Login = () => {
       <Layout>
         <Container>
           <div className="flex justify-center">
-            <form onSubmit={handleLogin} className="bg-white border p-16 ">
+            <form
+              onSubmit={handleSubmit(handleLogin)}
+              className="bg-white border p-16 "
+            >
               <div className="flex flex-col space-y-8">
                 <Alert title="Connexion en cours de développement" />
                 <div className="h-48">
@@ -76,20 +88,24 @@ const Login = () => {
                   <FormControl
                     type="email"
                     placeholder="john.doe@gmail.com"
-                    value={email}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      setEmail(e.target.value)
-                    }
+                    name="email"
+                    errors={errors}
+                    register={register}
                     required
                   />
                 </FormField>
                 <FormField label="Mot de passe">
                   <FormControl
                     type="password"
-                    value={password}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      setPassword(e.target.value)
-                    }
+                    name="password"
+                    errors={errors}
+                    register={register}
+                    validationSchema={{
+                      minLength: {
+                        value: 3,
+                        message: "Ce champs nécessite au moins 3 charactères",
+                      },
+                    }}
                     required
                   />
                 </FormField>

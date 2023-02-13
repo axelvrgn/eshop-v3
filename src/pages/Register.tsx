@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { supabase } from "../supabaseClient";
-
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
+import { supabase } from "../supabaseClient";
 
 import Layout from "../layouts/Layout";
 import Container from "../components/Container";
@@ -10,6 +11,12 @@ import FormControl from "../components/FormControl";
 import Logo from "../components/Logo";
 import Alert from "../components/Alert";
 import Loader from "../components/Loader";
+
+interface IFormValues {
+  email: string;
+  password: string;
+  passwordVerif: string;
+}
 
 const Register = () => {
   const [isLoading, setLoading] = useState(false);
@@ -44,6 +51,14 @@ const Register = () => {
     } else alert("Les mots de passe ne sont pas identique");
   };
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+
+    formState: { errors },
+  } = useForm<IFormValues>();
+
   return (
     <Layout>
       <Container>
@@ -69,45 +84,44 @@ const Register = () => {
                 </button>
               </div>
 
-              {/* <FormField label="Pseudo">
+              <FormField label="Pseudo">
                 <FormControl
                   type="text"
-                  value={pseudo}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPseudo(e.target.value)}
+                  name="pseudo"
+                  errors={errors}
+                  register={register}
                   required
                 />
-              </FormField> */}
+              </FormField>
               <FormField label="Adresse e-mail">
                 <FormControl
                   type="email"
                   placeholder="john.doe@gmail.com"
-                  value={email}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setEmail(e.target.value)
-                  }
+                  name="email"
+                  errors={errors}
+                  register={register}
                   required
                 />
               </FormField>
               <FormField label="Mot de passe">
                 <FormControl
                   type="password"
-                  value={password}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setPassword(e.target.value)
-                  }
+                  name="password"
+                  errors={errors}
+                  register={register}
                   required
                 />
               </FormField>
               <FormField label="Vérification du mot de passe">
                 <FormControl
                   type="password"
-                  value={passwordVerif}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setPasswordVerif(e.target.value)
-                  }
+                  name="{passwordVerif"
+                  errors={errors}
+                  register={register}
                   required
                 />
               </FormField>
+
               <button className="bg-yellow-400 p-2 text-white" type="submit">
                 {isLoading ? (
                   <div className="flex justify-center">
