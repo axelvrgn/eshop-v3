@@ -9,8 +9,12 @@ type Props = {
 };
 
 const Alert = ({ title, type }: Props) => {
+  const alertClass = () => {
+    var base = "";
+    return base;
+  };
   return (
-    <div className="flex space-x-3 items-center flex-nowrap border border-yellow-400 rounded bg-yellow-300 bg-opacity-70 p-2 text-black ">
+    <div className="flex space-x-3 items-center flex-nowrap border border-yellow-400 rounded bg-yellow-300 bg-opacity-70 p-2 text-black">
       <Icon path={mdiAlertCircleOutline} size={1} />
       <div>{title}</div>
     </div>

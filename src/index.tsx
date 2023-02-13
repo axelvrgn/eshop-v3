@@ -6,13 +6,17 @@ import reportWebVitals from "./reportWebVitals";
 import "@fontsource/poppins";
 import { ToastContextProvider } from "./components/Toast/ToastContext";
 
+import { AuthProvider } from "./contexts/Auth";
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
     <ToastContextProvider>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </ToastContextProvider>
   </React.StrictMode>
 );

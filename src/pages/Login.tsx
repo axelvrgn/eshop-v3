@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useToasts } from "../components/Toast/ToastContext";
+import AuthContext from "../contexts/Auth";
 
 import { supabase } from "../supabaseClient";
 
@@ -14,6 +15,7 @@ import Alert from "../components/Alert";
 import Loader from "../components/Loader";
 
 const Login = () => {
+  const { setAuth } = useContext(AuthContext);
   const [isLoading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,6 +38,10 @@ const Login = () => {
         title: "Bravo",
         content: "Vous êtes connecté !",
       });
+      const user = data.user;
+      const accessToken = data.session!.access_token;
+      sessionStorage.setItem("tk_u", accessToken);
+      setAuth([user, accessToken]);
       console.log(data);
     } catch (error: any) {
       alert(error.error_description || error.message);

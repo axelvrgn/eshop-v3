@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import Icon from "@mdi/react";
 import { mdiChevronRight, mdiChevronLeft, mdiMagnify } from "@mdi/js";
@@ -12,6 +12,7 @@ import FormField from "../components/FormField";
 import Loader from "../components/Loader";
 
 import { gameService } from "../services/gameService";
+import AuthContext from "../contexts/Auth";
 
 const VideoGames = () => {
   const [games, setGames] = useState([]);
@@ -21,6 +22,8 @@ const VideoGames = () => {
   const [platforms, setPlatforms] = useState("");
   const [genres, setGenres] = useState("");
   const [isLoading, setLoading] = useState<boolean>(true);
+
+  const auth = useContext(AuthContext);
 
   useEffect(() => {
     setPageSize(12);
@@ -53,6 +56,7 @@ const VideoGames = () => {
   };
 
   const handleNextPage = () => {
+    console.log(auth);
     setPage(page + 1);
   };
 

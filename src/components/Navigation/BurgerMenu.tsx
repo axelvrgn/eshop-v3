@@ -6,8 +6,8 @@ import Icon from "@mdi/react";
 import { mdiMenu, mdiClose } from "@mdi/js";
 
 import { NavLink } from "react-router-dom";
-import Routes from "./Routes";
-import GuestRoutes from "./GuestRoutes";
+import Routes from "../../data/Routes";
+import GuestRoutes from "../../data/GuestRoutes";
 import Logo from "../Logo";
 
 const BurgerMenu = () => {
