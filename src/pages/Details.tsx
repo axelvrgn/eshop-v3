@@ -16,6 +16,7 @@ const Details = () => {
 
   const [game, setGame] = useState<any>([]);
   const [developers, setDevelopers] = useState([]);
+  const [genres, setGenres] = useState([]);
 
   useEffect(() => {
     gameService
@@ -23,12 +24,13 @@ const Details = () => {
       .then((res) => {
         setGame(res.data);
         setDevelopers(res.data.developers);
+        setGenres(res.data.genres);
         console.log(res.data);
       })
       .catch(function (error) {
         console.error(error);
       });
-  });
+  }, []);
 
   return (
     <div>
@@ -64,6 +66,14 @@ const Details = () => {
                   <li className="flex">
                     Date de sortie: &ensp;
                     <Moment format="DD/MM/YYYY">{game.released}</Moment>
+                  </li>
+                  <li className="flex">
+                    Genres : &ensp;
+                    <ul className="flex space-x-2">
+                      {genres.map((genre: any, index) => (
+                        <li key={index}>{genre.name}</li>
+                      ))}
+                    </ul>
                   </li>
                 </ul>
               </Section>

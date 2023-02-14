@@ -1,15 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useForm } from "react-hook-form";
 
 import Icon from "@mdi/react";
-import { mdiChevronRight, mdiChevronLeft, mdiMagnify } from "@mdi/js";
+import { mdiChevronRight, mdiChevronLeft } from "@mdi/js";
 
 import Layout from "../layouts/Layout";
 import Container from "../components/Container";
 import Games from "../components/Game/Games";
 import Filters from "../components/Game/Filters";
-import FormControl from "../components/FormControl";
-import FormField from "../components/FormField";
 import Loader from "../components/Loader";
 
 import { gameService } from "../services/gameService";
