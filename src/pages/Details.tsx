@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-/*
-import ReactMarkdown from "https://esm.sh/react-markdown@7";
-import rehypeRaw from "https://cdn.skypack.dev/rehype-raw@6?dts";
-*/
+
 import Moment from "react-moment";
 
 import { useParams } from "react-router-dom";
@@ -48,12 +45,7 @@ const Details = () => {
             </div>
 
             <div className="flex flex-col space-y-8 px-4">
-              <Section title="Description">
-                {/* <ReactMarkdown
-                  children={game.description}
-                  rehypePlugins={[rehypeRaw]}
-                /> */}
-              </Section>
+              <Section title="Description">{game.description_raw}</Section>
               <Section title="Informations">
                 <ul>
                   <li className="flex space-x-2">

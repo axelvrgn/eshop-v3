@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 import { Dialog } from "@headlessui/react";
 
@@ -11,7 +11,6 @@ import GuestRoutes from "../../data/GuestRoutes";
 import Logo from "../Logo";
 
 const BurgerMenu = () => {
-  const [isMenuActive, setMenuActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const listRoutes = Routes.map((route, index) => (

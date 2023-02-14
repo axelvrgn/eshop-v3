@@ -14,10 +14,7 @@ import Loader from "../components/Loader";
 
 import { gameService } from "../services/gameService";
 import AuthContext from "../contexts/Auth";
-
-interface IFormValues {
-  search: string;
-}
+import Searchbar from "../components/Searchbar";
 
 const VideoGames = () => {
   const [games, setGames] = useState([]);
@@ -88,8 +85,6 @@ const VideoGames = () => {
     } else setPlatforms(platform);
   };
 
-  const { register, handleSubmit } = useForm<IFormValues>();
-
   return (
     <div>
       <Layout>
@@ -102,25 +97,11 @@ const VideoGames = () => {
               />
             </div>
             <div className="w-full md:w-8/12">
-              <form
-                className="flex flex-wrap space-x-2"
-                onSubmit={handleSubmit(searchGames)}
-              >
-                <FormField>
-                  <FormControl
-                    type="text"
-                    name="search"
-                    placeholder="Rechercher par un nom, mot-clé..."
-                    register={register}
-                  />
-                </FormField>{" "}
-                <button
-                  type="submit"
-                  className="bg-yellow-400 p-2 rounded capitalize text-white"
-                >
-                  <Icon path={mdiMagnify} size={1} />
-                </button>
-              </form>
+              <Searchbar
+                type="text"
+                placeholder="Recherchez par intitulé, mots-clés"
+                searchGames={searchGames}
+              />
 
               {isLoading ? (
                 <div className="flex justify-center scale-150 h-[70vh]">

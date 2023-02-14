@@ -79,7 +79,7 @@ const Login = () => {
                 Créer un compte
               </button>
             </div>
-            <form /*onSubmit={handleSubmit(handleLogin)}*/>
+            <form onSubmit={handleSubmit(handleLogin)}>
               <div className="flex flex-col space-y-8">
                 <FormField label="Adresse e-mail">
                   <FormControl
