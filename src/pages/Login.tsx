@@ -35,7 +35,7 @@ const Login = () => {
     formState: { errors },
   } = useForm<IFormValues>();
 
-  const handleLogin = async (formValues: any) => {
+  const handleLogin = async (formValues: IFormValues) => {
     try {
       setLoading(true);
       const { data, error } = await supabase.auth.signInWithPassword({
@@ -63,7 +63,7 @@ const Login = () => {
     <Layout>
       <Container>
         <div className="flex justify-center">
-          <div className="border bg-white p-12 w-full sm:w-auto flex flex-col space-y-4">
+          <div className="border bg-white p-8 w-full sm:w-auto flex flex-col space-y-4">
             <Alert title="Connexion en cours de développement" />
             <div className="h-48">
               <Logo />

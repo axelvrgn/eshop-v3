@@ -56,7 +56,7 @@ const Register = () => {
     <Layout>
       <Container>
         <div className="flex justify-center">
-          <div className="border bg-white p-12 w-full sm:w-auto flex flex-col space-y-4">
+          <div className="border bg-white p-8 w-full sm:w-auto flex flex-col space-y-4">
             <Alert title="Inscription en cours de développement" />
             <div className="h-48">
               <Logo />
