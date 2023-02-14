@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 
 import Moment from "react-moment";
 
@@ -26,7 +28,7 @@ const Details = () => {
       .catch(function (error) {
         console.error(error);
       });
-  }, []);
+  });
 
   return (
     <div>
@@ -45,7 +47,12 @@ const Details = () => {
             </div>
 
             <div className="flex flex-col space-y-8 px-4">
-              <Section title="Description">{game.description_raw}</Section>
+              <Section title="Description">
+                <ReactMarkdown
+                  children={game.description}
+                  rehypePlugins={[rehypeRaw]}
+                />
+              </Section>
               <Section title="Informations">
                 <ul>
                   <li className="flex space-x-2">
