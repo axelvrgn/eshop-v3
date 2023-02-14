@@ -1,5 +1,4 @@
 import React from "react";
-import { UseFormRegister } from "react-hook-form";
 
 type Props = {
   type: string;
@@ -29,8 +28,10 @@ const FormControl = ({
         {...register(name, validationSchema)}
         required={required}
       />
-      {errors && errors[name]?.type === "minLength" && (
-        <span className="text-red-500 break-all">{errors[name]?.message}</span>
+      {errors && (
+        <span className="text-red-600 break-all text-sm">
+          {errors[name]?.message}
+        </span>
       )}
     </div>
   );

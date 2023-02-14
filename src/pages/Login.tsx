@@ -60,30 +60,27 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <Layout>
-        <Container>
-          <div className="flex justify-center">
-            <form
-              onSubmit={handleSubmit(handleLogin)}
-              className="bg-white border p-16 "
-            >
-              <div className="flex flex-col space-y-8">
-                <Alert title="Connexion en cours de développement" />
-                <div className="h-48">
-                  <Logo />
-                </div>
+    <Layout>
+      <Container>
+        <div className="flex justify-center">
+          <div className="border bg-white p-12 w-full sm:w-auto flex flex-col space-y-4">
+            <Alert title="Connexion en cours de développement" />
+            <div className="h-48">
+              <Logo />
+            </div>
 
-                <div className="uppercase flex font-semibold text-lg flex-wrap items-center justify-between">
-                  <div>Connexion</div>
-                  <button
-                    type="button"
-                    className="uppercase hover:text-yellow-400 duration-150"
-                    onClick={() => navigate("/register")}
-                  >
-                    Créer un compte
-                  </button>
-                </div>
+            <div className="uppercase flex font-semibold text-lg flex-wrap items-center justify-between">
+              <div>Connexion</div>
+              <button
+                type="button"
+                className="uppercase hover:text-yellow-400 duration-150"
+                onClick={() => navigate("/register")}
+              >
+                Créer un compte
+              </button>
+            </div>
+            <form /*onSubmit={handleSubmit(handleLogin)}*/>
+              <div className="flex flex-col space-y-8">
                 <FormField label="Adresse e-mail">
                   <FormControl
                     type="email"
@@ -100,12 +97,6 @@ const Login = () => {
                     name="password"
                     errors={errors}
                     register={register}
-                    validationSchema={{
-                      minLength: {
-                        value: 3,
-                        message: "Ce champs nécessite au moins 3 charactères",
-                      },
-                    }}
                     required
                   />
                 </FormField>
@@ -124,9 +115,9 @@ const Login = () => {
               </div>
             </form>
           </div>
-        </Container>
-      </Layout>
-    </div>
+        </div>
+      </Container>
+    </Layout>
   );
 };
 

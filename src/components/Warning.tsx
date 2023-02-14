@@ -2,8 +2,8 @@ import React from "react";
 
 const Warning = () => {
   return (
-    <div className="min-h-8 py-1 flex items-center justify-center border-b">
-      <div className="font-bold text-slate-500">
+    <div className="min-h-8 py-1 flex items-center justify-center border-b ">
+      <div className="font-bold text-slate-500 text-xs md:text-lg px-4">
         BIENVENUE SUR UNE REPRODUCTION DU SITE OFFICIEL D'UBISOFT
       </div>
     </div>
