@@ -16,7 +16,7 @@ import Searchbar from "../components/Searchbar";
 const VideoGames = () => {
   const [games, setGames] = useState([]);
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(0);
+  const [pageSize, setPageSize] = useState(12);
   const [platforms, setPlatforms] = useState("");
   const [genres, setGenres] = useState("");
   const [isLoading, setLoading] = useState<boolean>(true);
@@ -24,7 +24,6 @@ const VideoGames = () => {
   const auth = useContext(AuthContext);
 
   useEffect(() => {
-    setPageSize(12);
     setLoading(true);
     gameService
       .getByPage(page, pageSize, genres, platforms)

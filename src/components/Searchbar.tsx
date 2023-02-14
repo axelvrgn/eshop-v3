@@ -23,7 +23,7 @@ const Searchbar = ({ type, placeholder, searchGames }: Props) => {
   return (
     <form
       onSubmit={handleSubmit(handleSearch)}
-      className="max-w-md bg-white border border-yellow-500 rounded-full px-2 py-1 flex flex-row-reverse justify-end"
+      className="max-w-md bg-white border border-yellow-500 rounded-md px-2 py-2 flex flex-row-reverse justify-end"
     >
       <input
         type={type}
