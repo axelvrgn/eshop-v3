@@ -57,7 +57,7 @@ const Details = () => {
               </Section>
               <Section title="Informations">
                 <ul>
-                  <li className="flex space-x-2">
+                  <li className="flex space-x-2 flex-wrap">
                     Développeur: &ensp;
                     {developers.map((developer: any, index) => (
                       <div key={index}>{developer.name}</div>
@@ -67,7 +67,7 @@ const Details = () => {
                     Date de sortie: &ensp;
                     <Moment format="DD/MM/YYYY">{game.released}</Moment>
                   </li>
-                  <li className="flex">
+                  <li className="flex flex-wrap">
                     Genres : &ensp;
                     <ul className="flex space-x-2">
                       {genres.map((genre: any, index) => (
