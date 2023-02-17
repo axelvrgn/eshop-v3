@@ -6,7 +6,7 @@ import { genreService } from "../../services/genreService";
 import { platformService } from "../../services/platformService";
 
 import Icon from "@mdi/react";
-import { mdiChevronDown, mdiChevronUp } from "@mdi/js";
+import { mdiChevronDown } from "@mdi/js";
 
 import Checkbox from "../Checkbox";
 

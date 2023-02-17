@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 
 import Icon from "@mdi/react";
 import { mdiChevronRight, mdiChevronLeft } from "@mdi/js";
+import { Dialog } from "@headlessui/react";
 
 import Layout from "../layouts/Layout";
 import Container from "../components/Container";
@@ -20,6 +21,7 @@ const VideoGames = () => {
   const [platforms, setPlatforms] = useState("");
   const [genres, setGenres] = useState("");
   const [isLoading, setLoading] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const auth = useContext(AuthContext);
 
@@ -85,7 +87,7 @@ const VideoGames = () => {
     <div>
       <Layout>
         <Container>
-          <div className="flex justify-between">
+          <div className="flex justify-between flex-wrap">
             <div className="w-3/12 hidden md:block">
               <Filters
                 handleGenre={handleGenre}
