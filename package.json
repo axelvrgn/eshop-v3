@@ -2,6 +2,7 @@
   "name": "eshop-v3",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@fontsource/poppins": "^4.5.10",
     "@headlessui/react": "^1.7.10",
