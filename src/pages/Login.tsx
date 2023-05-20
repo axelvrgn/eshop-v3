@@ -59,6 +59,15 @@ const Login = () => {
     }
   };
 
+  const logout = async () => {
+    const { error } = await supabase.auth.signOut();
+    console.log(error);
+    setAuth({});
+    pushToast({
+      content: "Vous êtes déconnecté !",
+    });
+  };
+
   return (
     <Layout>
       <Container>
@@ -112,6 +121,7 @@ const Login = () => {
                     <div>Connexion</div>
                   )}
                 </button>
+                <button onClick={logout}>Déconnexion</button>
               </div>
             </form>
           </div>

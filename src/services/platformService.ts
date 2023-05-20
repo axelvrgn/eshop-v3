@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const getAll = () => {
+const getAll = async () => {
   const options = {
     method: "GET",
     url: "https://api.rawg.io/api/platforms",

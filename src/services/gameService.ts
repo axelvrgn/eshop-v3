@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const getAll = () => {
+const getAll = async () => {
   const options = {
     method: "GET",
     url: "https://api.rawg.io/api/games",
@@ -9,7 +9,7 @@ const getAll = () => {
   return axios.request(options);
 };
 
-const getByPage = (
+const getByPage = async (
   page: number,
   pageSize: number,
   genres: string,

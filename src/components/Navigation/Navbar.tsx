@@ -37,15 +37,6 @@ const Navbar = () => {
   const { setAuth } = useContext(AuthContext);
   const { pushToast } = useToasts();
 
-  const logout = async () => {
-    const { error } = await supabase.auth.signOut();
-    console.log(error);
-    setAuth({});
-    pushToast({
-      content: "Vous êtes déconnecté !",
-    });
-  };
-
   return (
     <div className="flex items-center justify-between sticky top-0 bg-white z-40">
       <NavLink to="/" className="border-b-4 border-transparent">
@@ -56,7 +47,6 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-between ">
             <div className="flex space-x-8 flex-wrap">{listRoutes}</div>
-            <button onClick={logout}>Déconnexion</button>
           </div>
 
           <div className="px-4">{guestRoutes}</div>
