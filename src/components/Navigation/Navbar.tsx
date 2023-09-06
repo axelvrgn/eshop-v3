@@ -19,7 +19,7 @@ const listRoutes = Routes.map((route, index) => (
     }
     key={index}
   >
-    <div className="uppercase hover:text-yellow-400 duration-150 h-16 flex items-center  font-semibold">
+    <div className="uppercase hover:text-yellow-400 duration-150 h-16 flex items-center font-semibold">
       {route.label}
     </div>
   </NavLink>
