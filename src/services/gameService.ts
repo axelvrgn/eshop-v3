@@ -9,61 +9,35 @@ const getAll = async () => {
   return axios.request(options);
 };
 
+interface IOptions {
+  method: string;
+  url: string;
+  params: {
+    key: string;
+    page: number;
+    page_size: number;
+    genres?: string;
+    platforms?: string;
+  };
+}
+
 const getByPage = async (
   page: number,
   pageSize: number,
   genres: string,
   platforms: string
 ) => {
-  interface IOptions {
-    method: string;
-    url: string;
-    params: {
-      key: string;
-      page: number;
-      page_size: number;
-      genres?: string;
-      platforms?: string;
-    };
-  }
-
   const options: IOptions = {
     method: "GET",
     url: "https://api.rawg.io/api/games",
     params: {
       key: "ee0a2d47b6b54dd3b649aaa653e174f3",
-      page: page,
+      page,
       page_size: pageSize,
+      ...(genres && { genres }),
+      ...(platforms && { platforms }),
     },
   };
-
-  if (genres !== "") {
-    options.params = {
-      key: "ee0a2d47b6b54dd3b649aaa653e174f3",
-      page: page,
-      page_size: pageSize,
-      genres: genres,
-    };
-  }
-  if (platforms !== "") {
-    options.params = {
-      key: "ee0a2d47b6b54dd3b649aaa653e174f3",
-      page: page,
-      page_size: pageSize,
-      platforms: platforms,
-    };
-  }
-
-  if (genres !== "" && platforms !== "") {
-    options.params = {
-      key: "ee0a2d47b6b54dd3b649aaa653e174f3",
-      page: page,
-      page_size: pageSize,
-      genres: genres,
-      platforms: platforms,
-    };
-  }
-
   return axios.request(options);
 };
 
