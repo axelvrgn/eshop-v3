@@ -15,6 +15,7 @@ const Layout = ({ children }: Props) => {
       <Warning />
       <Navbar />
       <DiscountAlert />
+
       <main>{children}</main>
       <Footer />
     </div>
